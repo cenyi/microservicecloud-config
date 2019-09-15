@@ -48,3 +48,49 @@ info:
   company.name: qsct
   build.artifactId: $project.artifactId$
   build.version: $project.version$
+
+---
+server:
+  port: 8001
+spring:
+  profiles: test
+  application:
+    name: microservicecloud-config-dept-client
+  datasource: 
+  driver-class-name: org.sqlite.JDBC
+  url: jdbc:sqlite:C:/document/software/sqlite3/sc1.db
+  username: 
+  password: 
+  type: com.zaxxer.hikari.HikariDataSource
+  hikari: 
+    minimum-idle: 5
+    maximum-pool-size: 15
+    auto-commit: true
+    idle-timeout: 30000
+    pool-name: DatebookHikariCP
+    max-lifetime: 1800000
+    connection-timeout: 30000
+    connection-test-query: SELECT 1
+  main: 
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.qsct.sc.entities                # 所有Entity别名类所在包
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件
+
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+#      defaultZone: http://localhost:7001/eureka      ----------->单机地址设置
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance: 
+    instance-id: microservicecloud-dept8001-hystrix
+    prefer-ip-address: true #访问服务显示ip
+
+info: 
+  app.name: microservicecloud-provider-dept-8001
+  company.name: qsct
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
