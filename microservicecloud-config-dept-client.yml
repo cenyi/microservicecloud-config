@@ -58,7 +58,7 @@ spring:
     name: microservicecloud-config-dept-client
   datasource: 
   driver-class-name: org.sqlite.JDBC
-  url: jdbc:sqlite:C:/document/software/sqlite3/sc1.db
+  url: jdbc:sqlite:C:/document/software/sqlite3/sc2.db
   username: 
   password: 
   type: com.zaxxer.hikari.HikariDataSource
